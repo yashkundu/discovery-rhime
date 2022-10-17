@@ -1,11 +1,12 @@
 {
   "name": "@rhime/discovery",
   "version": "1.0.2",
-  "description": "",
+  "description": "The service discovery module for rhime",
   "main": "./build/index.js",
   "files": [
     "build/**/*"
   ],
+  "types": "./build/index.d.ts",
   "scripts": {
     "clean": "del-cli ./build/*",
     "build": "npm run clean && tsc",
