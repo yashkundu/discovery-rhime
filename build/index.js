@@ -9,10 +9,12 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Registry = void 0;
+exports.service = exports.Registry = void 0;
 const etcd3_1 = require("etcd3");
 const register_1 = require("./controllers/register");
 const watch_1 = require("./controllers/watch");
+const interfaces_1 = require("./interfaces");
+Object.defineProperty(exports, "service", { enumerable: true, get: function () { return interfaces_1.service; } });
 class Registry {
     constructor(opts) {
         this._etcd = new etcd3_1.Etcd3(opts);

@@ -9,4 +9,4 @@ declare class Registry {
     watchOne(serviceName: service): Promise<import("events")>;
     watchPrefix(prefix: string): Promise<import("events")>;
 }
-export { Registry };
+export { Registry, service, config, options };
