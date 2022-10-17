@@ -16,13 +16,17 @@ const register = async (serviceName: service, config: config,  opts: options, et
             
         } catch (error) {
             console.log(`${serviceName} failed to register to registry`);
+            register(serviceName, config, opts, etcd)
             throw error
         }
     }
 
-    await registerService()
-    setInterval(registerService, interval*1000)
-
+    try{
+        await registerService()
+        setInterval(registerService, interval*1000)
+    } catch(error) {
+        // :(
+    }
 }
 
 
