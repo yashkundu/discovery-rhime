@@ -31,4 +31,4 @@ class Registry {
 
 }
 
-export {Registry}
+export {Registry, service, config, options}
