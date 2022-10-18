@@ -24,10 +24,16 @@ const register = (serviceName, config, opts, etcd) => __awaiter(void 0, void 0, 
         }
         catch (error) {
             console.log(`${serviceName} failed to register to registry`);
+            register(serviceName, config, opts, etcd);
             throw error;
         }
     });
-    yield registerService();
-    setInterval(registerService, interval * 1000);
+    try {
+        yield registerService();
+        setInterval(registerService, interval * 1000);
+    }
+    catch (error) {
+        // :(
+    }
 });
 exports.register = register;

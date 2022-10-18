@@ -18,9 +18,7 @@ interface options {
 
 
 interface config {
-    serviceName: service,
-    url: string,
-    endpoint: string
+    url: string
 }
 
 export {config, options, service}
