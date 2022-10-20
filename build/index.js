@@ -13,6 +13,7 @@ exports.service = exports.Registry = void 0;
 const etcd3_1 = require("etcd3");
 const register_1 = require("./controllers/register");
 const watch_1 = require("./controllers/watch");
+const get_1 = require("./controllers/get");
 const interfaces_1 = require("./interfaces");
 Object.defineProperty(exports, "service", { enumerable: true, get: function () { return interfaces_1.service; } });
 class Registry {
@@ -26,17 +27,27 @@ class Registry {
     }
     register(serviceName, config, opts) {
         return __awaiter(this, void 0, void 0, function* () {
-            yield (0, register_1.register)(serviceName, config, opts, this._etcd);
+            yield (0, register_1.register)(serviceName, config, opts, this.etcd);
+        });
+    }
+    getOne(serviceName) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield (0, get_1.getOne)(serviceName, this.etcd);
+        });
+    }
+    getPrefix(prefix) {
+        return __awaiter(this, void 0, void 0, function* () {
+            return yield (0, get_1.getPrefix)(prefix, this.etcd);
         });
     }
     watchOne(serviceName) {
         return __awaiter(this, void 0, void 0, function* () {
-            return (0, watch_1.watchOne)(serviceName, this._etcd);
+            return (0, watch_1.watchOne)(serviceName, this.etcd);
         });
     }
     watchPrefix(prefix) {
         return __awaiter(this, void 0, void 0, function* () {
-            return (0, watch_1.watchPrefix)(prefix, this._etcd);
+            return (0, watch_1.watchPrefix)(prefix, this.etcd);
         });
     }
 }

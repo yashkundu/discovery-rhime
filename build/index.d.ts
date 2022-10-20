@@ -6,6 +6,11 @@ declare class Registry {
     constructor(opts: IOptions);
     get etcd(): Etcd3;
     register(serviceName: service, config: config, opts: options): Promise<void>;
+    getOne(serviceName: service): Promise<string | null>;
+    getPrefix(prefix: string): Promise<{
+        key: string;
+        value: string;
+    }[]>;
     watchOne(serviceName: service): Promise<import("events")>;
     watchPrefix(prefix: string): Promise<import("events")>;
 }
