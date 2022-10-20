@@ -7,11 +7,13 @@ const register = async (serviceName: service, config: config,  opts: options, et
     if(!opts.ttl) opts.ttl = 0;
 
     opts.ttl = Math.max(opts.ttl, 20);
-    const interval = opts.ttl - 5;
+    // const interval = opts.ttl - 5;
 
     const registerService = async () => {
         try {
-            await etcd.lease(opts.ttl as number, {autoKeepAlive: false}).put(serviceName).value(JSON.stringify(config))
+            // lease is kept automatically alive by periodacally sending keepAlive
+            // make autoKeepAlive: false for alternative behaviour
+            await etcd.lease(opts.ttl as number).put(serviceName).value(JSON.stringify(config))
             console.log(`${serviceName} registered to registry`);
             
         } catch (error) {
@@ -23,7 +25,8 @@ const register = async (serviceName: service, config: config,  opts: options, et
 
     try{
         await registerService()
-        setInterval(registerService, interval*1000)
+        // Good alternative of the below is to keep the lease alive by calling keep-alive :)
+        // setInterval(registerService, interval*1000)
     } catch(error) {
         // :(
     }

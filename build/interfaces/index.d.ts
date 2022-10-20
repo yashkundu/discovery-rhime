@@ -14,8 +14,6 @@ interface options {
     ttl?: number;
 }
 interface config {
-    serviceName: service;
     url: string;
-    endpoint: string;
 }
 export { config, options, service };

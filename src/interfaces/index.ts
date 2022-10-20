@@ -1,7 +1,6 @@
 
 enum service {
     auth = 'rhime/auth',
-    client = 'rhime/client',
     feed = 'rhime/feed',
     notification = 'rhime/notification',
     post = 'rhime/post',
