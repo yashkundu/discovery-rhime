@@ -1,6 +1,6 @@
 {
   "name": "@rhime/discovery",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "The service discovery module for rhime",
   "main": "./build/index.js",
   "files": [
