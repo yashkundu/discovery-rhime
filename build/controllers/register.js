@@ -16,10 +16,12 @@ const register = (serviceName, config, opts, etcd) => __awaiter(void 0, void 0, 
     if (!opts.ttl)
         opts.ttl = 0;
     opts.ttl = Math.max(opts.ttl, 20);
-    const interval = opts.ttl - 5;
+    // const interval = opts.ttl - 5;
     const registerService = () => __awaiter(void 0, void 0, void 0, function* () {
         try {
-            yield etcd.lease(opts.ttl, { autoKeepAlive: false }).put(serviceName).value(JSON.stringify(config));
+            // lease is kept automatically alive by periodacally sending keepAlive
+            // make autoKeepAlive: false for alternative behaviour
+            yield etcd.lease(opts.ttl).put(serviceName).value(JSON.stringify(config));
             console.log(`${serviceName} registered to registry`);
         }
         catch (error) {
@@ -30,7 +32,8 @@ const register = (serviceName, config, opts, etcd) => __awaiter(void 0, void 0, 
     });
     try {
         yield registerService();
-        setInterval(registerService, interval * 1000);
+        // Good alternative of the below is to keep the lease alive by calling keep-alive :)
+        // setInterval(registerService, interval*1000)
     }
     catch (error) {
         // :(

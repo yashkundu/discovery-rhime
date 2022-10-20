@@ -4,7 +4,6 @@ exports.service = void 0;
 var service;
 (function (service) {
     service["auth"] = "rhime/auth";
-    service["client"] = "rhime/client";
     service["feed"] = "rhime/feed";
     service["notification"] = "rhime/notification";
     service["post"] = "rhime/post";
