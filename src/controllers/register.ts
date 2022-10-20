@@ -17,7 +17,7 @@ const register = async (serviceName: service, config: config,  opts: options, et
             const lease = etcd.lease(opts.ttl as number)
             await lease.put(serviceName).value(JSON.stringify(config)).exec()
 
-            setTimeout(async () => {
+            setInterval(async () => {
                 await lease.keepaliveOnce()
                 console.log('keepAlive Tick .. ');
             }, interval*1000)

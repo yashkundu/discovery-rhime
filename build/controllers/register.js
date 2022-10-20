@@ -25,6 +25,7 @@ const register = (serviceName, config, opts, etcd) => __awaiter(void 0, void 0, 
             yield lease.put(serviceName).value(JSON.stringify(config)).exec();
             setTimeout(() => __awaiter(void 0, void 0, void 0, function* () {
                 yield lease.keepaliveOnce();
+                console.log('keepAlive Tick .. ');
             }), interval * 1000);
             console.log(`${serviceName} registered to registry`);
         }
