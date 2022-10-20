@@ -19,6 +19,7 @@ const register = async (serviceName: service, config: config,  opts: options, et
 
             setTimeout(async () => {
                 await lease.keepaliveOnce()
+                console.log('keepAlive Tick .. ');
             }, interval*1000)
 
             console.log(`${serviceName} registered to registry`);
