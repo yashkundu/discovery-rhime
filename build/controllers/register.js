@@ -23,7 +23,7 @@ const register = (serviceName, config, opts, etcd) => __awaiter(void 0, void 0, 
             // make autoKeepAlive: false for alternative behaviour
             const lease = etcd.lease(opts.ttl);
             yield lease.put(serviceName).value(JSON.stringify(config)).exec();
-            setTimeout(() => __awaiter(void 0, void 0, void 0, function* () {
+            setInterval(() => __awaiter(void 0, void 0, void 0, function* () {
                 yield lease.keepaliveOnce();
                 console.log('keepAlive Tick .. ');
             }), interval * 1000);
