@@ -3,6 +3,7 @@ declare enum service {
     feed = "rhime/feed",
     notification = "rhime/notification",
     post = "rhime/post",
+    comment = "rhime/comment",
     recommendation = "rhime/recommendation",
     spotify = "rhime/spotify",
     user = "rhime/user",

@@ -9,6 +9,7 @@ enum service {
     spotify = 'rhime/spotify',
     user = 'rhime/user',
     userGraph = 'rhime/userGraph',
+    reaction = 'rhime/reaction',
     userGraphView = 'userGraphView'
 }
 

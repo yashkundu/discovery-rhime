@@ -7,6 +7,7 @@ var service;
     service["feed"] = "rhime/feed";
     service["notification"] = "rhime/notification";
     service["post"] = "rhime/post";
+    service["comment"] = "rhime/comment";
     service["recommendation"] = "rhime/recommendation";
     service["spotify"] = "rhime/spotify";
     service["user"] = "rhime/user";
