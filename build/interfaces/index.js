@@ -12,6 +12,7 @@ var service;
     service["spotify"] = "rhime/spotify";
     service["user"] = "rhime/user";
     service["userGraph"] = "rhime/userGraph";
+    service["reaction"] = "rhime/reaction";
     service["userGraphView"] = "userGraphView";
 })(service || (service = {}));
 exports.service = service;

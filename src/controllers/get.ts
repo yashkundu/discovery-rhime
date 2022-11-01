@@ -6,7 +6,7 @@ const getOne = async (serviceName: service, etcd:Etcd3) => {
         const res = await etcd.get(serviceName).string()
         return res
     } catch (error) {
-        console.log(`Failed to watch ${serviceName}`);
+        console.log(`Failed to get ${serviceName} service address`);
         throw error
     }
 }
@@ -20,7 +20,7 @@ const getPrefix = async (prefix: string, etcd:Etcd3) => {
         }))
         return finalRes
     } catch (error) {
-        console.log(`Failed to watch ${prefix} prefix`);
+        console.log(`Failed to get ${prefix} prefix address`);
         throw error
     }
 }
