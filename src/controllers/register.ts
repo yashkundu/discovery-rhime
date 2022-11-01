@@ -7,20 +7,26 @@ const register = async (serviceName: service, config: config,  opts: options, et
     if(!opts.ttl) opts.ttl = 0;
 
     opts.ttl = Math.max(opts.ttl, 20);
-    const interval = opts.ttl - 5;
+    const interval = opts.ttl - 10;
 
     const registerService = async () => {
         try {
             // lease is kept automatically alive by periodacally sending keepAlive
             // make autoKeepAlive: false for alternative behaviour
+            // keeping the lease active is not that efficient
+            // it puts a huge load on the service rather periodically add 
+            // the keys with a ttl.
 
-            const lease = etcd.lease(opts.ttl as number)
+            const lease = etcd.lease(opts.ttl as number, {autoKeepAlive: false})
             await lease.put(serviceName).value(JSON.stringify(config)).exec()
 
-            setInterval(async () => {
+            const keepAlive = async () => {
                 await lease.keepaliveOnce()
                 console.log('keepAlive Tick .. ');
-            }, interval*1000)
+                setTimeout(keepAlive, interval*1000);
+            }
+
+            setTimeout(keepAlive, interval*1000);
 
             console.log(`${serviceName} registered to registry`);
             

@@ -16,7 +16,7 @@ const getOne = (serviceName, etcd) => __awaiter(void 0, void 0, void 0, function
         return res;
     }
     catch (error) {
-        console.log(`Failed to watch ${serviceName}`);
+        console.log(`Failed to get ${serviceName} service address`);
         throw error;
     }
 });
@@ -31,7 +31,7 @@ const getPrefix = (prefix, etcd) => __awaiter(void 0, void 0, void 0, function* 
         return finalRes;
     }
     catch (error) {
-        console.log(`Failed to watch ${prefix} prefix`);
+        console.log(`Failed to get ${prefix} prefix address`);
         throw error;
     }
 });
